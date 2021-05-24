@@ -19,7 +19,7 @@ const Keyboard = (props) => {
             {keymap.map((el) => {
                 return (
                     <div key={el.id}>
-                        <button onClick={() => props.handleScreen(el.num)}>
+                        <button onClick={() => props.handleInput(el.num)}>
                             <h1>{el.num}</h1>
                             <p>{el.letters}</p>
                         </button>
