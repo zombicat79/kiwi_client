@@ -9,8 +9,20 @@ import logo from './kiwi-logo.png';
 import turnOff from './turn-off-button.png'
 
 function App() {
-  const [keyboardInput, setKeyboardInput] = useState("");
+  const [phoneStatus, setPhoneStatus] = useState("off")
+  console.log(phoneStatus)
 
+  function handlePhoneStatus() {
+    if (phoneStatus === "off") {
+      setPhoneStatus("on");
+    }
+    else {
+      setPhoneStatus("off");
+    }
+  }
+
+  const [keyboardInput, setKeyboardInput] = useState("");
+  
   useEffect(() => {
     if (keyboardInput.length !== 0) {
       axios.get(`http://localhost:5000/${keyboardInput}`)
@@ -27,7 +39,7 @@ function App() {
     });
   }
 
-  const [screenText, setScreenText] = useState("");
+  const [screenText, setScreenText] = useState("Hello");
 
   function handleScreen(incomingValue) {
     setScreenText(incomingValue)
@@ -37,15 +49,17 @@ function App() {
     <main>
       <section>
         <div id="head-section">
-          <img src={turnOff} height="30" />
+          <button id="turn-off-button" onClick={() => handlePhoneStatus()}>
+            <img src={turnOff} height="30" />
+          </button>
         </div>
         <h1><em>KiwiPhone 3000</em></h1>
       </section>
       <section>
-        <Screen text={screenText} />
+        <Screen text={screenText} phoneStatus={phoneStatus} />
       </section>
       <section>
-        <Keyboard handleInput={handleInput} />
+        <Keyboard handleInput={handleInput} phoneStatus={phoneStatus} />
       </section>
       <section id="logo-container">
         <img src={logo} height="50" />

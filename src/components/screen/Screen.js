@@ -1,7 +1,7 @@
 const Screen = (props) => {
     return (
         <div id="screen">
-            <p>{props.text}</p>
+            {props.phoneStatus === "on" && <p>{props.text}</p>}
         </div>
     )
 }

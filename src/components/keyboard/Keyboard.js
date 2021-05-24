@@ -19,7 +19,11 @@ const Keyboard = (props) => {
             {keymap.map((el) => {
                 return (
                     <div key={el.id}>
-                        <button className="phone-buttons" onClick={() => props.handleInput(el.num)}>
+                        <button className="phone-buttons" onClick={() => {
+                            if (props.phoneStatus === "on") {
+                                props.handleInput(el.num)
+                            }
+                        }}>
                             <h2>{el.num}</h2>
                             <p>{el.letters}</p>
                         </button>
