@@ -15,12 +15,12 @@ const keymap = [
 
 const Keyboard = (props) => {
     return (
-        <div>
+        <div id="keyboard-container">
             {keymap.map((el) => {
                 return (
                     <div key={el.id}>
-                        <button onClick={() => props.handleInput(el.num)}>
-                            <h1>{el.num}</h1>
+                        <button className="phone-buttons" onClick={() => props.handleInput(el.num)}>
+                            <h2>{el.num}</h2>
                             <p>{el.letters}</p>
                         </button>
                     </div>
