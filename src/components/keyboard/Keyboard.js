@@ -21,10 +21,16 @@ for (const button of keymap) {
 }    
 
 const Keyboard = (props) => {
-    const [buttonState, setButtonState] = useState(pressedButtons)
+    const [buttonState, setButtonState] = useState(pressedButtons);
     
-    function handleButtonPressing(button) {
-        setButtonState({...buttonState, [button]: !buttonState[button]})
+    function handleButtonPressing(buttonId) {
+        setButtonState({...buttonState, [buttonId]: !buttonState[buttonId]});
+    }
+
+    function removeButtonPressing(buttonId) {
+        setTimeout(() => {
+            setButtonState({...buttonState, [buttonId]: !buttonState[buttonId]})
+        }, 500)
     }
 
     return (
@@ -43,6 +49,9 @@ const Keyboard = (props) => {
                                     handleButtonPressing(el.id);
                                 }
                         }}>
+                            {buttonState[el.id] === true 
+                                ? removeButtonPressing(el.id) 
+                                : null}
                             <h2>{el.num}</h2>
                             <p>{el.letters}</p>
                         </button>
