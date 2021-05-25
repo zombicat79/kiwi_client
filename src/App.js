@@ -9,8 +9,8 @@ import logo from './kiwi-logo.png';
 import turnOff from './turn-off-button.png'
 
 function App() {
+  // State and handling of phone status (on/off)
   const [phoneStatus, setPhoneStatus] = useState("off")
-  console.log(phoneStatus)
 
   function handlePhoneStatus() {
     if (phoneStatus === "off") {
@@ -21,6 +21,7 @@ function App() {
     }
   }
 
+  // State and handling of keyboard input and querying to the server
   const [keyboardInput, setKeyboardInput] = useState("");
   
   useEffect(() => {
@@ -39,6 +40,7 @@ function App() {
     });
   }
 
+  // State and handling of phone screen output
   const [screenText, setScreenText] = useState("Hello");
 
   function handleScreen(incomingValue) {
