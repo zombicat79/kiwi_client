@@ -18,6 +18,7 @@ function App() {
     }
     else {
       setPhoneStatus("off");
+      setActiveScreen(screens[0]);
     }
   }
 
@@ -41,7 +42,31 @@ function App() {
   }
 
   //State and handling of option menu sections active on screen.
-  const [activeScreen, setActiveScreen] = useState("time")
+  const screens = ["message", "date", "time"]
+  const [activeScreen, setActiveScreen] = useState(screens[0])
+
+  function handleScreenChange(direction) {
+    if (direction === "right") {
+      setActiveScreen((prevState) => {
+        if (screens.indexOf(prevState) === screens.length - 1) {
+          return screens[0];
+        }
+        else {
+          return screens[screens.indexOf(prevState) + 1];
+        }
+      })
+    }
+    else {
+      setActiveScreen((prevState) => {
+        if (screens.indexOf(prevState) === 0) {
+          return screens[screens.length - 1];
+        }
+        else {
+          return screens[screens.indexOf(prevState) - 1];
+        }
+      })
+    }
+  }
 
   // State and handling of phone screen output.
   const [screenText, setScreenText] = useState("Hello");
@@ -64,7 +89,7 @@ function App() {
         <Screen text={screenText} phoneStatus={phoneStatus} activeScreen={activeScreen} />
       </section>
       <section>
-        <Keyboard handleInput={handleInput} phoneStatus={phoneStatus} />
+        <Keyboard handleInput={handleInput} phoneStatus={phoneStatus} screenChange={handleScreenChange} />
       </section>
       <section id="logo-container">
         <img src={logo} height="50" alt="Kiwi logo" />

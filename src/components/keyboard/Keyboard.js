@@ -38,15 +38,19 @@ const Keyboard = (props) => {
             switch(true) {
                 case button.id === "1L":
                     console.log("1");
+                    handleButtonPressing(button.id);
                     break;
                 case button.id === "4L":
-                    console.log("left");
+                    props.screenChange("left");
+                    handleButtonPressing(button.id);
                     break;
                 case button.id === "4C":
                     console.log("0");
+                    handleButtonPressing(button.id);
                     break;
                 case button.id === "4R":
-                    console.log("right");
+                    props.screenChange("right");
+                    handleButtonPressing(button.id);
                     break;
                 default:
                     props.handleInput(button.num);

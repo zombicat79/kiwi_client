@@ -1,5 +1,4 @@
 const DateInfo = () => {
-    // Time display needs improvement (one digit minutes)!!!
     const date = [
         new Date().getDay(),
         new Date().getDate(),
