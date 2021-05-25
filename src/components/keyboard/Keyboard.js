@@ -1,7 +1,7 @@
 import { useState} from 'react';
 
 const keymap = [
-    {id: "1L", num: 1, letters: ""}, 
+    {id: "1L", num: 1, letters: "SELECT"}, 
     {id: "1C", num: 2, letters: "abc"}, 
     {id: "1R", num: 3, letters: "def"}, 
     {id: "2L", num: 4, letters: "ghi"}, 
@@ -10,9 +10,9 @@ const keymap = [
     {id: "3L", num: 7, letters: "pqrs"}, 
     {id: "3C", num: 8, letters: "tuv"}, 
     {id: "3R", num: 9, letters: "wxyz"},
-    {id: "4L", num: "", letters: "*+"},
-    {id: "4C", num: 0, letters: ""},
-    {id: "4R", num: "", letters: "#"}
+    {id: "4L", num: "<", letters: ""},
+    {id: "4C", num: 0, letters: "BACK"},
+    {id: "4R", num: ">", letters: ""}
 ]
 
 let pressedButtons = {};
@@ -33,6 +33,28 @@ const Keyboard = (props) => {
         }, 500)
     }
 
+    function handleClicks(button) {
+        if (props.phoneStatus === "on") {
+            switch(true) {
+                case button.id === "1L":
+                    console.log("1");
+                    break;
+                case button.id === "4L":
+                    console.log("left");
+                    break;
+                case button.id === "4C":
+                    console.log("0");
+                    break;
+                case button.id === "4R":
+                    console.log("right");
+                    break;
+                default:
+                    props.handleInput(button.num);
+                    handleButtonPressing(button.id);
+            }
+        }
+    }
+
     return (
         <div id="keyboard-container">
             {keymap.map((el) => {
@@ -44,10 +66,7 @@ const Keyboard = (props) => {
                                 ? { backgroundColor: "lightgrey" } 
                                 : { backgroundColor: "grey", border: "2px solid yellow" }} 
                             onClick={() => {
-                                if (props.phoneStatus === "on") {
-                                    props.handleInput(el.num);
-                                    handleButtonPressing(el.id);
-                                }
+                                handleClicks(el);
                         }}>
                             {buttonState[el.id] === true 
                                 ? removeButtonPressing(el.id) 

@@ -37,6 +37,20 @@ h1 {
   height: 100px;
   font-family: 'Press Start 2P', cursive;
   font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.screen-layout {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.screen-text {
+  padding: 0px 20px 0px 20px;
+  text-align: center;
 }
 
 #keyboard-container {
