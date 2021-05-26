@@ -19,33 +19,16 @@ function App() {
     else {
       setPhoneStatus("off");
       setActiveScreen(screens[0]);
+      setKeyboardInput("");
     }
   }
 
-  // State and handling of keyboard input and querying to the server.
-  const [keyboardInput, setKeyboardInput] = useState("");
-  
-  useEffect(() => {
-    if (keyboardInput.length !== 0) {
-      axios.get(`http://localhost:5000/${keyboardInput}`)
-      .then((response) => {
-        const { data } = response;
-        handleScreen(data)
-      })    
-    }      
-  }, [keyboardInput])
-
-  function handleInput(keystroke) {
-    setKeyboardInput((prevState) => {
-      return prevState + keystroke;
-    });
-  }
-
   //State and handling of option menu sections active on screen.
-  const screens = ["message", "date", "time"]
+  const screens = ["main", "contacts", "message", "date", "time"]
   const [activeScreen, setActiveScreen] = useState(screens[0])
 
   function handleScreenChange(direction) {
+    setKeyboardInput("");
     if (direction === "right") {
       setActiveScreen((prevState) => {
         if (screens.indexOf(prevState) === screens.length - 1) {
@@ -69,11 +52,33 @@ function App() {
   }
 
   // State and handling of phone screen output.
-  const [screenText, setScreenText] = useState("Hello");
-
+  const [screenText, setScreenText] = useState("");
+  
   function handleScreen(incomingValue) {
     setScreenText(incomingValue)
-  } 
+  }
+
+  // State and handling of keyboard input and querying to the server.
+  const [keyboardInput, setKeyboardInput] = useState("");
+  
+  useEffect(() => {
+    if (keyboardInput.length !== 0 && activeScreen === "message") {
+      axios.get(`http://localhost:5000/${keyboardInput}`)
+      .then((response) => {
+        const { data } = response;
+        handleScreen(data)
+      })    
+    }
+    else {
+      handleScreen(keyboardInput)
+    }
+  }, [keyboardInput, activeScreen])
+
+  function handleInput(keystroke) {
+    setKeyboardInput((prevState) => {
+      return prevState + keystroke;
+    });
+  }
   
   return (
     <main>

@@ -1,4 +1,4 @@
-const DateInfo = () => {
+const DateInfo = (props) => {
     const date = [
         new Date().getDay(),
         new Date().getDate(),
@@ -49,7 +49,8 @@ const DateInfo = () => {
     return (
         <div className="screen-layout">
             <p>{`<`}</p>
-            <p className="screen-text">{`${weekdays[date[0]]}, ${date[1]}${ordinalSuffix} of ${months[date[2]]} ${date[3]}`}</p>
+            {props.text.length === 0 && <p className="screen-text">{`${weekdays[date[0]]}, ${date[1]}${ordinalSuffix} of ${months[date[2]]} ${date[3]}`}</p>}
+            {props.text.length > 0 && <p className="screen-text">{props.text}</p>}
             <p>{`>`}</p>
         </div>
     )
