@@ -34,23 +34,52 @@ const Keyboard = (props) => {
     }
 
     function handleClicks(button) {
+        const screens = ["main", "contacts", "message", "date", "time"]
         if (props.phoneStatus === "on") {
             switch(true) {
                 case button.id === "1L":
-                    console.log("1");
+                    // props.handleInput(button.num);
                     handleButtonPressing(button.id);
+                    if (props.activeScreen === "contacts") {
+                        props.innerScreenChange("David");
+                    }
+                    else if (props.activeScreen === "David") {
+                        props.innerScreenChange("oncall");
+                    }
+                    else if (props.activeScreen === "message") {
+                        props.innerScreenChange("typing");
+                    }
                     break;
                 case button.id === "4L":
-                    props.screenChange("left");
                     handleButtonPressing(button.id);
+                    if (screens.includes(props.activeScreen)) {
+                        props.screenChange("left");
+                    }
+                    else if (props.activeScreen === "typing") {
+                        props.inputGoBack();
+                    }
                     break;
                 case button.id === "4C":
-                    console.log("0");
+                    // props.handleInput(button.num);
                     handleButtonPressing(button.id);
+                    if (props.activeScreen === "oncall") {
+                        props.innerScreenChange("David");
+                    }
+                    else if (props.activeScreen === "David") {
+                        props.innerScreenChange("contacts");
+                    }
+                    else if (props.activeScreen === "typing") {
+                        props.innerScreenChange("message");
+                    }
                     break;
                 case button.id === "4R":
-                    props.screenChange("right");
                     handleButtonPressing(button.id);
+                    if (screens.includes(props.activeScreen)) {
+                        props.screenChange("right");
+                    }
+                    /* else if (props.activeScreen === "typing") {
+                        props.addSpacing();
+                    }*/
                     break;
                 default:
                     props.handleInput(button.num);
