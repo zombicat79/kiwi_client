@@ -6,6 +6,8 @@ import Contacts from './contacts/Contacts';
 import David from './contacts/david/David';
 import Oncall from './oncall/Oncall';
 import Typing from './message-composer/typing/Typing';
+import Dialling from './dialling/Dialling';
+import SpecialCall from './special-call/SpecialCall';
 
 const Screen = (props) => {
     return (
@@ -17,7 +19,9 @@ const Screen = (props) => {
             {props.phoneStatus === "on" && props.activeScreen === "time" && <TimeInfo text={props.text} /> }
             {props.phoneStatus === "on" && props.activeScreen === "David" && <David /> }
             {props.phoneStatus === "on" && props.activeScreen === "oncall" && <Oncall /> }
+            {props.phoneStatus === "on" && props.activeScreen === "specialcall" && <SpecialCall /> }
             {props.phoneStatus === "on" && props.activeScreen === "typing" && <Typing text={props.text} /> }
+            {props.phoneStatus === "on" && props.activeScreen === "dialling" && <Dialling text={props.text} /> }
         </article>
     )
 }

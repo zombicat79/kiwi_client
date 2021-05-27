@@ -8,6 +8,10 @@ import './App.css';
 import logo from './kiwi-logo.png';
 import turnOff from './turn-off-button.png'
 
+// *** PENDING STUFF
+// Possibility to navigate away from dialling screen
+// Possibility to select composed word and move on to the next.
+
 function App() {
   // State and handling of phone status (on/off).
   const [phoneStatus, setPhoneStatus] = useState("off")
@@ -75,12 +79,16 @@ function App() {
   console.log(keyboardInput)
   
   useEffect(() => {
-    if (keyboardInput.length !== 0 && activeScreen === "typing") {
+    if (keyboardInput.length !== 0 && activeScreen === "typing" && !keyboardInput.includes(0) && !keyboardInput.includes(1)) {
       axios.get(`http://localhost:5000/${keyboardInput}`)
       .then((response) => {
         const { data } = response;
         handleScreen(data)
       })    
+    }
+    else if (keyboardInput.length > 0 && activeScreen !== "David" && activeScreen !== "specialcall") {
+      setActiveScreen("dialling");
+      handleScreen(keyboardInput);
     }
     else {
       handleScreen(keyboardInput)
@@ -113,12 +121,13 @@ function App() {
       <section>
         <Screen text={screenText} phoneStatus={phoneStatus} activeScreen={activeScreen} />
       </section>
-      <section>
+      <section id="keyboard">
         <Keyboard handleInput={handleInput} phoneStatus={phoneStatus} screenChange={handleScreenChange} 
-                  activeScreen={activeScreen} innerScreenChange={handleInnerScreenChange} inputGoBack={inputGoBack} />
+                  activeScreen={activeScreen} innerScreenChange={handleInnerScreenChange} inputGoBack={inputGoBack} 
+                  keyboardInput={keyboardInput} />
       </section>
       <section id="logo-container">
-        <img src={logo} height="50" alt="Kiwi logo" />
+        <img id="logo" src={logo} alt="Kiwi logo" />
       </section>
     </main>
   );

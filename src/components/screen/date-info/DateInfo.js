@@ -47,11 +47,15 @@ const DateInfo = (props) => {
     }  
 
     return (
-        <div className="screen-layout">
-            <p>{`<`}</p>
-            {props.text.length === 0 && <p className="screen-text">{`${weekdays[date[0]]}, ${date[1]}${ordinalSuffix} of ${months[date[2]]} ${date[3]}`}</p>}
+        <div>
+            {props.text.length === 0 &&
+                <div className="screen-layout">
+                    <p>{`<`}</p>
+                    <p className="screen-text">{`${weekdays[date[0]]}, ${date[1]}${ordinalSuffix} of ${months[date[2]]} ${date[3]}`}</p>
+                    <p>{`>`}</p>
+                </div>
+            }
             {props.text.length > 0 && <p className="screen-text">{props.text}</p>}
-            <p>{`>`}</p>
         </div>
     )
 }

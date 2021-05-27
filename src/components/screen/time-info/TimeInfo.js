@@ -3,11 +3,11 @@ const TimeInfo = (props) => {
     
     return (
         <div className="screen-layout">
-            <p>{`<`}</p>
+            {props.text.length === 0 && <p>{`<`}</p>}
             {props.text.length === 0 && time[1] >= 10 && <p className="screen-text">{`${time[0]}:${time[1]}`}</p>}
             {props.text.length === 0 && time[1] < 10 && <p className="screen-text">{`${time[0]}:0${time[1]}`}</p>}
+            {props.text.length === 0 && <p>{`>`}</p>}
             {props.text.length > 0 && <p className="screen-text">{props.text}</p>}
-            <p>{`>`}</p>
         </div>
     )
 }

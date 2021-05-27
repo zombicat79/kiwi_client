@@ -38,16 +38,21 @@ const Keyboard = (props) => {
         if (props.phoneStatus === "on") {
             switch(true) {
                 case button.id === "1L":
-                    // props.handleInput(button.num);
                     handleButtonPressing(button.id);
                     if (props.activeScreen === "contacts") {
                         props.innerScreenChange("David");
                     }
                     else if (props.activeScreen === "David") {
-                        props.innerScreenChange("oncall");
+                        props.innerScreenChange("specialcall");
                     }
                     else if (props.activeScreen === "message") {
                         props.innerScreenChange("typing");
+                    }
+                    else if (props.activeScreen === "typing") {
+                        console.log(1);
+                    }
+                    else {
+                        props.handleInput(button.num);
                     }
                     break;
                 case button.id === "4L":
@@ -55,14 +60,13 @@ const Keyboard = (props) => {
                     if (screens.includes(props.activeScreen)) {
                         props.screenChange("left");
                     }
-                    else if (props.activeScreen === "typing") {
+                    else if (props.activeScreen === "typing" || props.activeScreen === "dialling") {
                         props.inputGoBack();
                     }
                     break;
                 case button.id === "4C":
-                    // props.handleInput(button.num);
                     handleButtonPressing(button.id);
-                    if (props.activeScreen === "oncall") {
+                    if (props.activeScreen === "specialcall") {
                         props.innerScreenChange("David");
                     }
                     else if (props.activeScreen === "David") {
@@ -71,11 +75,20 @@ const Keyboard = (props) => {
                     else if (props.activeScreen === "typing") {
                         props.innerScreenChange("message");
                     }
+                    else if (props.activeScreen === "oncall") {
+                        props.innerScreenChange(screens[0]);
+                    }
+                    else {
+                        props.handleInput(button.num); 
+                    }
                     break;
                 case button.id === "4R":
                     handleButtonPressing(button.id);
                     if (screens.includes(props.activeScreen)) {
                         props.screenChange("right");
+                    }
+                    else if (props.activeScreen === "dialling") {
+                        props.innerScreenChange("oncall")
                     }
                     /* else if (props.activeScreen === "typing") {
                         props.addSpacing();
