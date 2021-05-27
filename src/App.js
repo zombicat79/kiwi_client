@@ -67,19 +67,18 @@ function App() {
       setScreenText(incomingValue)
   }
 
-  /* function addTextSpacing() {
-    setScreenText((prevState) => {
-      return prevState + " !";
-    })
-    
-  } */
+  /*function addTextSpacing() {
+    setScreenText((prevState => {
+      return prevState + " !"
+    }));
+    setKeyboardInput("");
+  }*/
 
   // State and handling of keyboard input and querying to the server.
   const [keyboardInput, setKeyboardInput] = useState("");
-  console.log(keyboardInput)
   
   useEffect(() => {
-    if (keyboardInput.length !== 0 && activeScreen === "typing" && !keyboardInput.includes(0) && !keyboardInput.includes(1)) {
+    if (keyboardInput.length !== 0 && activeScreen === "typing" && !keyboardInput.toString().includes(0) && !keyboardInput.toString().includes(1)) {
       axios.get(`http://localhost:5000/${keyboardInput}`)
       .then((response) => {
         const { data } = response;
@@ -90,6 +89,9 @@ function App() {
       setActiveScreen("dialling");
       handleScreen(keyboardInput);
     }
+    /*else if (keyboardInput === "" && activeScreen === "typing") {
+      setScreenText(screenText)
+    }*/
     else {
       handleScreen(keyboardInput)
     }
@@ -124,7 +126,7 @@ function App() {
       <section id="keyboard">
         <Keyboard handleInput={handleInput} phoneStatus={phoneStatus} screenChange={handleScreenChange} 
                   activeScreen={activeScreen} innerScreenChange={handleInnerScreenChange} inputGoBack={inputGoBack} 
-                  keyboardInput={keyboardInput} />
+                  screenText={screenText} />
       </section>
       <section id="logo-container">
         <img id="logo" src={logo} alt="Kiwi logo" />

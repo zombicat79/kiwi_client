@@ -1,4 +1,7 @@
 import { useState} from 'react';
+import axios from 'axios';
+import buttonTap from './../../button-tapping.wav';
+import phoneCall from './../../phone-call.wav';
 
 const keymap = [
     {id: "1L", num: 1, letters: "SELECT"}, 
@@ -33,6 +36,21 @@ const Keyboard = (props) => {
         }, 500)
     }
 
+    function makeCall() {
+        const call = document.querySelector('#phone-call');
+        call.play();
+    }
+
+    function hangUp() {
+        const call = document.querySelector('#phone-call');
+        call.pause();
+    }
+
+    function buttonTapping() {
+        const tap = document.querySelector('#button-sound');
+        tap.play();
+    }
+
     function handleClicks(button) {
         const screens = ["main", "contacts", "message", "date", "time"]
         if (props.phoneStatus === "on") {
@@ -41,62 +59,73 @@ const Keyboard = (props) => {
                     handleButtonPressing(button.id);
                     if (props.activeScreen === "contacts") {
                         props.innerScreenChange("David");
+                        buttonTapping();
                     }
                     else if (props.activeScreen === "David") {
                         props.innerScreenChange("specialcall");
+                        makeCall();
                     }
                     else if (props.activeScreen === "message") {
                         props.innerScreenChange("typing");
+                        buttonTapping();
                     }
                     else if (props.activeScreen === "typing") {
-                        console.log(1);
+                        axios.post(`http://localhost:5000/${props.screenText}`);            
                     }
                     else {
                         props.handleInput(button.num);
+                        buttonTapping();
                     }
                     break;
                 case button.id === "4L":
                     handleButtonPressing(button.id);
                     if (screens.includes(props.activeScreen)) {
                         props.screenChange("left");
+                        buttonTapping();
                     }
                     else if (props.activeScreen === "typing" || props.activeScreen === "dialling") {
                         props.inputGoBack();
+                        buttonTapping();
                     }
                     break;
                 case button.id === "4C":
                     handleButtonPressing(button.id);
                     if (props.activeScreen === "specialcall") {
                         props.innerScreenChange("David");
+                        hangUp();
                     }
                     else if (props.activeScreen === "David") {
                         props.innerScreenChange("contacts");
+                        buttonTapping();
                     }
                     else if (props.activeScreen === "typing") {
                         props.innerScreenChange("message");
+                        buttonTapping();
                     }
                     else if (props.activeScreen === "oncall") {
+                        hangUp();
                         props.innerScreenChange(screens[0]);
                     }
                     else {
-                        props.handleInput(button.num); 
+                        props.handleInput(button.num);
+                        buttonTapping();
                     }
                     break;
                 case button.id === "4R":
                     handleButtonPressing(button.id);
                     if (screens.includes(props.activeScreen)) {
                         props.screenChange("right");
+                        buttonTapping();
                     }
                     else if (props.activeScreen === "dialling") {
                         props.innerScreenChange("oncall")
+                        makeCall();
                     }
-                    /* else if (props.activeScreen === "typing") {
-                        props.addSpacing();
-                    }*/
                     break;
                 default:
                     props.handleInput(button.num);
                     handleButtonPressing(button.id);
+                    buttonTapping();
             }
         }
     }
@@ -119,6 +148,8 @@ const Keyboard = (props) => {
                                 : null}
                             <h2>{el.num}</h2>
                             <p>{el.letters}</p>
+                            <audio id="button-sound" src={buttonTap} />
+                            <audio id="phone-call" src={phoneCall} />
                         </button>
                     </div>
                 )
