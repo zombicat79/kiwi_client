@@ -5,8 +5,8 @@ import Keyboard from './components/keyboard/Keyboard';
 import Screen from './components/screen/Screen';
 
 import './App.css';
-import logo from './kiwi-logo.png';
-import turnOff from './turn-off-button.png'
+import logo from './img/kiwi-logo.png';
+import turnOff from './img/turn-off-button.png';
 
 // *** PENDING STUFF
 // Possibility to navigate away from dialling screen

@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# KiwiPhone 3000 - Client side
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This is the front ent side of an app developed as part of a tech challenge posed during a recruitment process.  It represents a retro mobile phone (Nokia style) with a series of mocked typical phone features: making calls, browsing contacts, checking date & time and writing SMS.
 
-In the project directory, you can run:
+The main goal of the challenge was to mimic the so-called T9 or predictive text technology that boasted the most state-of-the-art models of the time, by which the phone could infer the word intented by the user just with a few button taps. 
 
-### `npm start`
+## Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Base language: JavaScript
+- Front end libraries & frameworks: React.js, Axios (HTTP requests)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  
 
-### `npm test`
+## User stories / Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Navigation menu:** Users can navigate the various sections of the menu  (in some instances a few levels down) by pressing the navigation buttons in the keypad. 
 
-### `npm run build`
+- **Contact browsing:** Users can access a mock contact listing and perform a fake call to the only member. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Mock calling:** Users can type in numbers at any time and proceed to perform a fake call.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Date & time check:** Users get a couple of screens with updated info about local date and time.. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Mock SMS composition:** Users can write messages (short words of up to 6 letters, rather) mimicking the performance of the aforementioned T9 predictive text technology. 
+  
+  
 
-### `npm run eject`
+## Component structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### General Overview:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`<App>`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+​		`<Screen />`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+​		`<Keyboard />`
 
-## Learn More
+`</App>`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### Breakdown:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### APP
 
-### Analyzing the Bundle Size
+The main component of the map represents the phone itself and holds its general state.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### SCREEN
 
-### Making a Progressive Web App
+A presentational component that receives props from the main component and renders a different set of subscreens (subcomponents) according to the parameters of navigation. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### KEYBOARD
 
-### Advanced Configuration
+This component holds the logic needed to operate the keyboard and allow user navigation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Instructions
 
-### `npm run build` fails to minify
+### Getting started:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+$ git clone https://github.com/zombicat79/kiwi_client.git
+$ npm run start
+```
+
+The app will start running on http://localhost:3000/
+
+### Phone operation:
+
+1. Switch on the phone by pressing the red button on the right-hand corner.
+2. Navigate the main options of the menu by pressing "<" and ">" buttons.
+3. When encountered a section in CAPITAL LETTERS, press "1" (Select) in order to navigate a level down. Press "0" (Back) to move back to the previous step.
+4. Press any number on the keypad at any moment to start typing a phone number. Press button "<" to mend mistakes and move backwards. Press ">" to make the call. While calling, press "0" to hang up.
+5. When writing messages, press the button in the keypad containing the intended letter. Press button "<" to mend mistakes and move backwards. Press "1" (Select) to save a certain word to your collection of preferred ones (better for performance purposes). Press "0" (Back) to leave the writing screen.
+6. Switch off the phone by pressing the red button on the right-hand corner.
+

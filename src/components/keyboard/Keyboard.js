@@ -1,7 +1,8 @@
 import { useState} from 'react';
 import axios from 'axios';
-import buttonTap from './../../button-tapping.wav';
-import phoneCall from './../../phone-call.wav';
+
+import buttonTap from './../../sounds/button-tapping.wav';
+import phoneCall from './../../sounds/phone-call.wav';
 
 const keymap = [
     {id: "1L", num: 1, letters: "SELECT"}, 

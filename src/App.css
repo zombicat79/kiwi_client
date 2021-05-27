@@ -3,7 +3,7 @@
 
 body {
   background-color: darkblue;
-  background-image: url("./sky_bckgnd.jpeg");
+  background-image: url("./img/sky_bckgnd.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -84,7 +84,7 @@ h1 {
 @media screen and (min-width: 540px) and (max-width: 1249px) {
   body {
     background-color: darkblue;
-    background-image: url("./atoll-bckgnd.jpeg");
+    background-image: url("./img/atoll-bckgnd.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -102,7 +102,7 @@ h1 {
 @media screen and (min-width: 1250px) {
   body {
     background-color: darkblue;
-    background-image: url("./atoll-bckgnd.jpeg");
+    background-image: url("./img/atoll-bckgnd.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
