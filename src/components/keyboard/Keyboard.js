@@ -55,6 +55,9 @@ const Keyboard = (props) => {
     function handleClicks(button) {
         const screens = ["main", "contacts", "message", "date", "time"]
         if (props.phoneStatus === "on") {
+            if (props.keyboardInput.includes(">")) {
+                props.inputGoBack();
+            }
             switch(true) {
                 case button.id === "1L":
                     handleButtonPressing(button.id);
@@ -101,7 +104,7 @@ const Keyboard = (props) => {
                     }
                     else if (props.activeScreen === "typing") {
                         props.innerScreenChange("message");
-                        buttonTapping();
+                        buttonTapping();                  
                     }
                     else if (props.activeScreen === "oncall") {
                         hangUp();
@@ -121,6 +124,9 @@ const Keyboard = (props) => {
                     else if (props.activeScreen === "dialling") {
                         props.innerScreenChange("oncall")
                         makeCall();
+                    }
+                    else if (props.activeScreen === "typing") {
+                        props.handleInput(button.num);
                     }
                     break;
                 default:

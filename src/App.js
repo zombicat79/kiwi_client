@@ -8,10 +8,6 @@ import './App.css';
 import logo from './img/kiwi-logo.png';
 import turnOff from './img/turn-off-button.png';
 
-// *** PENDING STUFF
-// Possibility to navigate away from dialling screen
-// Possibility to select composed word and move on to the next.
-
 function App() {
   // State and handling of phone status (on/off).
   const [phoneStatus, setPhoneStatus] = useState("off")
@@ -67,31 +63,28 @@ function App() {
       setScreenText(incomingValue)
   }
 
-  /*function addTextSpacing() {
-    setScreenText((prevState => {
-      return prevState + " !"
-    }));
-    setKeyboardInput("");
-  }*/
-
   // State and handling of keyboard input and querying to the server.
   const [keyboardInput, setKeyboardInput] = useState("");
   
   useEffect(() => {
-    if (keyboardInput.length !== 0 && activeScreen === "typing" && !keyboardInput.toString().includes(0) && !keyboardInput.toString().includes(1)) {
+    if (keyboardInput.length !== 0 && activeScreen === "typing" && !keyboardInput.toString().includes(0) && !keyboardInput.toString().includes(1) && !keyboardInput.includes(">")) {
       axios.get(`http://localhost:5000/${keyboardInput}`)
       .then((response) => {
         const { data } = response;
         handleScreen(data)
       })    
     }
+    else if (keyboardInput.includes(">")) {
+        axios.get(`http://localhost:5000/favorites/${keyboardInput}`)
+        .then((response) => {
+            const { data } = response;
+            handleScreen(data);
+        })  
+    }
     else if (keyboardInput.length > 0 && activeScreen !== "David" && activeScreen !== "specialcall") {
       setActiveScreen("dialling");
       handleScreen(keyboardInput);
     }
-    /*else if (keyboardInput === "" && activeScreen === "typing") {
-      setScreenText(screenText)
-    }*/
     else {
       handleScreen(keyboardInput)
     }
@@ -126,7 +119,7 @@ function App() {
       <section id="keyboard">
         <Keyboard handleInput={handleInput} phoneStatus={phoneStatus} screenChange={handleScreenChange} 
                   activeScreen={activeScreen} innerScreenChange={handleInnerScreenChange} inputGoBack={inputGoBack} 
-                  screenText={screenText} />
+                  screenText={screenText} handleScreen={handleScreen} keyboardInput={keyboardInput} />
       </section>
       <section id="logo-container">
         <img id="logo" src={logo} alt="Kiwi logo" />

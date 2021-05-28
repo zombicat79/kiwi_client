@@ -2,7 +2,7 @@
 
 ## Description
 
-This is the front ent side of an app developed as part of a tech challenge posed during a recruitment process.  It represents a retro mobile phone (Nokia style) with a series of mocked typical phone features: making calls, browsing contacts, checking date & time and writing SMS.
+This is the front end side of an app developed as part of a tech challenge posed during a recruitment process.  It represents a retro mobile phone (Nokia style) with a series of mocked typical phone features: making calls, browsing contacts, checking date & time and writing SMS.
 
 The main goal of the challenge was to mimic the so-called T9 or predictive text technology that boasted the most state-of-the-art models of the time, by which the phone could infer the word intented by the user just with a few button taps. 
 
