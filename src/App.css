@@ -8,6 +8,24 @@ body {
   background-repeat: no-repeat;
 }
 
+#catchphrase-container {
+  margin: 20vw;
+}
+
+.catchphrase {
+  text-align: center;
+  color: black;
+}
+
+#catchphrase-container h2 {
+  font-size: 10vw;
+}
+
+#catchphrase-container p {
+  font-size: 7vw;
+  font-weight: 600;
+}
+
 .App {
   text-align: center;
 }
@@ -81,7 +99,8 @@ h1 {
   width: 30vw;
 }
 
-@media screen and (min-width: 540px) and (max-width: 1249px) {
+/* This media query is not fully configured. Please check on mobile phone or desktop */
+@media screen and (min-width: 700px) and (max-width: 1249px) {
   body {
     background-color: darkblue;
     background-image: url("./img/atoll-bckgnd.jpeg");
@@ -91,11 +110,44 @@ h1 {
     justify-content: center;
   }
 
+  #catchphrase-container {
+    margin: 50px;
+    float: right;
+  }
+  
+  .catchphrase {
+    text-align: center;
+    color: black;
+  }
+  
+  #catchphrase-container h2 {
+    font-size: 40px;
+  }
+  
+  #catchphrase-container p {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
   main {
     position: relative;
     margin-left: 30vw;
     margin-right: 30vw;
     height: 400px;
+  }
+
+  h1 {
+    font-size: 10px;
+  }
+
+  #keyboard {
+    position: absolute;
+    height: 1000px;
+  }
+
+  #logo {
+    position: absolute;
+    height: 1%
   }
 }
 
@@ -110,23 +162,46 @@ h1 {
     position: fixed;
   }
 
+  #catchphrase-container {
+    margin: 50px;
+    float: right;
+  }
+  
+  .catchphrase {
+    text-align: center;
+    color: black;
+  }
+  
+  #catchphrase-container h2 {
+    font-size: 40px;
+  }
+  
+  #catchphrase-container p {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
   main {
     width: 25%;
-    height: 62%;
-    margin: 50px 0px 50px 200px;
+    height: 66%;
+    margin: 50px 0px 40px 200px;
   }
 
   h1 {
     font-size: 30px;
   }
 
+  .screen-text {
+    padding: 20px;
+  }
+
   #keyboard-container {
-    height: 20%;
+    height: 2%;
   }
 
   #logo {
     position: relative;
-    bottom: 8vw;
-    height: 50px;
+    bottom: 8.5vw;
+    height: 3.5vw;
   }
 }

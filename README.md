@@ -1,5 +1,7 @@
 # KiwiPhone 3000 - Client side
 
+*** Keep in mind that the app is responsive, but only for mobile phones and desktop (do not use an iPad sort of device in order to check it!) ***
+
 ## Description
 
 This is the front end side of an app developed as part of a tech challenge posed during a recruitment process.  It represents a retro mobile phone (Nokia style) with a series of mocked typical phone features: making calls, browsing contacts, checking date & time and writing SMS.
@@ -74,6 +76,6 @@ The app will start running on http://localhost:3000/
 2. Navigate the main options of the menu by pressing "<" and ">" buttons.
 3. When encountered a section in CAPITAL LETTERS, press "1" (Select) in order to navigate a level down. Press "0" (Back) to move back to the previous step.
 4. Press any number on the keypad at any moment to start typing a phone number. Press button "<" to mend mistakes and move backwards. Press ">" to make the call. While calling, press "0" to hang up.
-5. When writing messages, press the button in the keypad containing the intended letter. Press button "<" to mend mistakes and move backwards. Press "1" (Select) to save a certain word to your collection of preferred ones (better for performance purposes). Press "0" (Back) to leave the writing screen.
+5. When writing messages, press the button in the keypad containing the intended letter. Press button "<" to mend mistakes and move backwards. Press "1" (Select) to save a certain word to your collection of preferred ones (better for performance purposes). Press ">" to look for a favorite word previously stored. Press "0" (Back) to leave the writing screen.
 6. Switch off the phone by pressing the red button on the right-hand corner.
 

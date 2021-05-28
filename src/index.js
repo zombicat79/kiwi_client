@@ -6,6 +6,10 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <div id="catchphrase-container">
+      <h2 className="catchphrase">Need a vacation?</h2>
+      <p className="catchphrase">Send a text with the word "trip" and win some mock holidays!</p>
+    </div>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
