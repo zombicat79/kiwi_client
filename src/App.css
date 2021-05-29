@@ -96,7 +96,8 @@ h1 {
 }
 
 #logo {
-  width: 30vw;
+  width: 20vw;
+  height: 10vw;
 }
 
 /* This media query is not fully configured. Please check on mobile phone or desktop */
@@ -203,5 +204,6 @@ h1 {
     position: relative;
     bottom: 8.5vw;
     height: 3.5vw;
+    width: 7vw;
   }
 }
