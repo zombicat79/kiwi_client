@@ -117,7 +117,7 @@ function App() {
       return curtailedInput;
     })
   }
-  
+
   return (
     <main>
       {
@@ -143,9 +143,9 @@ function App() {
           </section>
 
           <section id="logo-container">
-            <a href="https://zombiecat.dev/" rel="noreferrer" target="_blank" class="branding-pack branding-pack--phone">
-              <img class="branding-img" src={logo} alt="ZombieCat logo" />
-              <h1 class="branding-heading">Zombiecat</h1>
+            <a href="https://zombiecat.dev/" rel="noreferrer" target="_blank" className="branding-pack branding-pack--phone">
+              <img className="branding-img" src={logo} alt="ZombieCat logo" />
+              <h1 className="branding-heading">Zombiecat</h1>
             </a>
           </section>
         </section>
