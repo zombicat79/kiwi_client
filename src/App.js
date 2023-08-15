@@ -3,12 +3,27 @@ import axios from 'axios';
 
 import Keyboard from './components/keyboard/Keyboard';
 import Screen from './components/screen/Screen';
+import ViewporAlert from './pages/ViewportAlert';
 
 import './App.css';
-import logo from './img/kiwi-logo.png';
+import logo from './img/zombiecat-trans-logo.png';
 import turnOff from './img/turn-off-button.png';
 
 function App() {
+  // Determines whether the page is being displayed on a desktop device or not
+  const [viewportType, setViewportType] = useState('desktop');
+  const handleViewportType = () => {
+    if (window.innerWidth < 1300) {
+      setViewportType('mobile');
+    } else {
+      setViewportType('desktop');
+    }
+  }
+
+  useEffect(() => {
+    handleViewportType();
+  })
+
   // State and handling of phone status (on/off).
   const [phoneStatus, setPhoneStatus] = useState("off")
 
@@ -68,14 +83,14 @@ function App() {
   
   useEffect(() => {
     if (keyboardInput.length !== 0 && activeScreen === "typing" && !keyboardInput.toString().includes(0) && !keyboardInput.toString().includes(1) && !keyboardInput.includes(">")) {
-      axios.get(`http://localhost:5000/${keyboardInput}`)
+      axios.get(`https://zombiecat.dev/projects/kiwiphone/mockserver/${keyboardInput}`)
       .then((response) => {
         const { data } = response;
         handleScreen(data)
       })    
     }
     else if (keyboardInput.includes(">")) {
-        axios.get(`http://localhost:5000/favorites/${keyboardInput}`)
+        axios.get(`https://zombiecat.dev/projects/kiwiphone/mockserver/favorites/${keyboardInput}`)
         .then((response) => {
             const { data } = response;
             handleScreen(data);
@@ -105,25 +120,43 @@ function App() {
   
   return (
     <main>
-      <section>
-        <div id="head-section">
-          <button id="turn-off-button" onClick={() => handlePhoneStatus()}>
-            <img src={turnOff} height="30" alt="On/off switch" />
-          </button>
-        </div>
-        <h1><em>KiwiPhone 3000</em></h1>
-      </section>
-      <section>
-        <Screen text={screenText} phoneStatus={phoneStatus} activeScreen={activeScreen} />
-      </section>
-      <section id="keyboard">
-        <Keyboard handleInput={handleInput} phoneStatus={phoneStatus} screenChange={handleScreenChange} 
+      {
+        viewportType === "desktop" &&
+        <section>
+          <section>
+            <div id="head-section">
+              <button id="turn-off-button" onClick={() => handlePhoneStatus()}>
+                <img src={turnOff} height="30" alt="On/off switch" />
+              </button>
+            </div>
+            <h1><em>KiwiPhone</em></h1>
+          </section>
+
+          <section>
+            <Screen text={screenText} phoneStatus={phoneStatus} activeScreen={activeScreen} />
+          </section>
+
+          <section id="keyboard">
+            <Keyboard handleInput={handleInput} phoneStatus={phoneStatus} screenChange={handleScreenChange} 
                   activeScreen={activeScreen} innerScreenChange={handleInnerScreenChange} inputGoBack={inputGoBack} 
                   screenText={screenText} handleScreen={handleScreen} keyboardInput={keyboardInput} />
-      </section>
-      <section id="logo-container">
-        <img id="logo" src={logo} alt="Kiwi logo" />
-      </section>
+          </section>
+
+          <section id="logo-container">
+            <a href="https://zombiecat.dev/" rel="noreferrer" target="_blank" class="branding-pack branding-pack--phone">
+              <img class="branding-img" src={logo} alt="ZombieCat logo" />
+              <h1 class="branding-heading">Zombiecat</h1>
+            </a>
+          </section>
+        </section>
+      }
+      
+      {
+        viewportType === "mobile" &&
+        <section id="alert-wrapper">
+          <ViewporAlert />
+        </section>
+      }
     </main>
   );
 }

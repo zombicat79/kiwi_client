@@ -1,5 +1,6 @@
 {
   "name": "kiwi_client",
+  "homepage": "https://zombiecat.dev/projects/kiwiphone/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

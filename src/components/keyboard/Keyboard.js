@@ -74,7 +74,7 @@ const Keyboard = (props) => {
                         buttonTapping();
                     }
                     else if (props.activeScreen === "typing") {
-                        axios.post(`http://localhost:5000/${props.screenText}`)            
+                        axios.post(`https://zombiecat.dev/projects/kiwiphone/mockserver/${props.screenText}`)            
                     }
                     else {
                         props.handleInput(button.num);

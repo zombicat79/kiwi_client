@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
+@font-face {
+  font-family: "Russo-Regular";
+  src: url("./fonts/RussoOne-Regular.ttf");
+}
+
 body {
   background-color: darkblue;
   background-image: url("./img/sky_bckgnd.jpeg");
@@ -92,12 +97,7 @@ h1 {
 #logo-container {
   display: flex;
   justify-content: center;
-  margin: 10vw;
-}
-
-#logo {
-  width: 20vw;
-  height: 10vw;
+  margin: 15px 0;
 }
 
 /* This media query is not fully configured. Please check on mobile phone or desktop */
@@ -185,7 +185,8 @@ h1 {
   main {
     width: 25%;
     height: 66%;
-    margin: 50px 0px 40px 200px;
+    min-height: 700px;
+    margin: 10px 0px 40px 200px;
   }
 
   h1 {
@@ -201,9 +202,98 @@ h1 {
   }
 
   #logo {
-    position: relative;
-    bottom: 8.5vw;
-    height: 3.5vw;
-    width: 7vw;
+    width: 50px;
+    margin: 30px auto;
   }
 }
+
+/* ZOMBIECAT BRANDING PACK */
+.branding-pack {
+  width: fit-content;
+  text-align: center;
+}
+.branding-pack:link, 
+.branding-pack:visited, 
+.branding-pack:active, 
+.branding-pack:hover {
+  text-decoration: none;
+  color: black;
+}
+.branding-pack:hover {
+  cursor: pointer;
+}
+
+.branding-heading {
+  font-family: "Russo-Regular";
+  font-size: 25px;
+  margin: 0;
+}
+.branding-pack:hover .branding-heading {
+  text-shadow: 3px 1px 20px black, -3px -1px 20px black;
+}
+.branding-pack--phone .branding-heading {
+  font-size: 14px;
+}
+
+.branding-img {
+  width: 50px;
+}
+.branding-pack--alert .branding-img {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media screen and (max-width: 1300px) {
+  #catchphrase-container {
+      display: none;
+  }
+
+  main {
+    background-color: transparent;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  main #alert-wrapper {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  main #alert-screen {
+      position: relative;
+      top: 75%;
+      left: 50%;
+      width: fit-content;
+      transform: translate(-50%, -75%);
+  }
+
+  #alert-screen .alert-text {
+      font-size: 20px;
+      font-family: "Russo-Regular"; 
+      color: black;
+      margin-bottom: 20px;
+      text-align: center;
+  }
+  #alert-screen .alert-text:nth-child(2) {
+      margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  main #alert-screen {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      width: fit-content;
+      transform: translate(-50%, -50%);
+      padding: 0 50px;
+  }
+}
+
+
