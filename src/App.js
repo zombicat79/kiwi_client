@@ -83,18 +83,20 @@ function App() {
   
   useEffect(() => {
     if (keyboardInput.length !== 0 && activeScreen === "typing" && !keyboardInput.toString().includes(0) && !keyboardInput.toString().includes(1) && !keyboardInput.includes(">")) {
-      axios.get(`https://zombiecat.dev/projects/kiwiphone/mockserver/${keyboardInput}`)
+      axios.get(`https://backend.zombiecat.dev/kiwiphone/${keyboardInput}`)
       .then((response) => {
         const { data } = response;
         handleScreen(data)
-      })    
+      })
+      .catch((err) => console.log(err))
     }
     else if (keyboardInput.includes(">")) {
-        axios.get(`https://zombiecat.dev/projects/kiwiphone/mockserver/favorites/${keyboardInput}`)
+        axios.get(`https://backend.zombiecat.dev/kiwiphone/${keyboardInput}`)
         .then((response) => {
             const { data } = response;
             handleScreen(data);
-        })  
+        })
+        .catch((err) => console.log(err))
     }
     else if (keyboardInput.length > 0 && activeScreen !== "David" && activeScreen !== "specialcall") {
       setActiveScreen("dialling");
